@@ -36,8 +36,8 @@ const OlvidePassword = () => {
 
   return (
     <>
-      <h1 className="text-green-600 font-black text-6xl capitalize">Recupera Tu {''}
-        <span className="text-orange-700">Contraseña</span>
+      <h1 className="text-pink-600 font-black text-6xl capitalize">Recupera Tu {''}
+        <span className="text pink-700">Contraseña</span>
       </h1>
 
       {msg && <Alerta alerta={alerta} />}
@@ -63,7 +63,7 @@ const OlvidePassword = () => {
         <input
           type="submit"
           value="Enviar instrucciones"
-          className="bg-green-700 mb-5 w-full py-3 text-white uppercase font-bold rounded cursor-pointer transition-all hover:bg-green-800"
+          className="bg-pink-700 mb-5 w-full py-3 text-white uppercase font-bold rounded cursor-pointer transition-all hover:bg-pink-800"
         />
       </form>
 

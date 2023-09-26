@@ -67,6 +67,7 @@ const Login = () => {
               />
             </div>
             <input
+            to='/cursos'
               type="submit"
               value="Iniciar sesión"
               class="bg-pink-700 w-full py-2 px-3 text-white uppercase text-sm font-semibold rounded cursor-pointer hover:bg-pink-600"

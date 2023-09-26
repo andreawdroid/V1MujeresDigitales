@@ -123,7 +123,7 @@ const Registrar = () => {
           <input
             type="submit"
             value="Registrarse"
-            className="bg-green-700 mb-5 w-full py-3 text-white uppercase font-bold rounded cursor-pointer transition-all hover:bg-green-800"
+            className="bg-pink-700 mb-5 w-full py-3 text-white uppercase font-bold rounded cursor-pointer transition-all hover:bg-pink-800"
           />
         </form>
 
