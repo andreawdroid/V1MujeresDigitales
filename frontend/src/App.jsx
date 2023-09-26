@@ -11,6 +11,7 @@ import Cursos from './pages/Cursos';
 import NuevoCurso from './pages/NuevoCurso';
 import Curso from './pages/Curso';
 import EditarCurso from './pages/EditarCurso';
+import Home from './pages/Home';
 
 import { AuthProvider } from './context/AuthProvider';
 import {  CursosProvider } from './context/CursosProvider';
@@ -29,12 +30,15 @@ function App() {
               <Route path='olvide-password' element={<OlvidePassword />} />
               <Route path='olvide-password/:token' element={<NuevoPassword />} />
               <Route path='confirmar/:id' element={<ConfirmarCuenta />} />
+              <Route path="crear-cursos" element={<NuevoCurso />} />
+              <Route path="editar/:id" element={<EditarCurso />} />
+              <Route path="/Home" element={<Home/>} />
+
+              
             </Route>
             <Route path="/cursos" element={<RutaProtegida />}>
               <Route index element={<Cursos />} />
-              <Route path="crear-cursos" element={<NuevoCurso />} />
-              <Route path=":id" element={<Curso />} />
-              <Route path="editar/:id" element={<EditarCurso />} />
+              
             </Route>
           </Routes>
         </CursosProvider>

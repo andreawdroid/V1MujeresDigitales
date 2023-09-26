@@ -23,11 +23,17 @@ const Header = () => {
                     placeholder='Buscar Ofertas'
                     className='rounded-lg lg:w-96 block p-2 border'
                 />
+                
                 <div className='flex items-center gap-4'>
                     <Link
                         to="/cursos"
                         className='font-bold uppercase'
-                    >Ofertas</Link>
+                    >Municipios</Link>
+
+<Link
+                        to="/cursos"
+                        className='font-bold uppercase'
+                    >Servicios</Link>
 
                     <button
                         type="button"
