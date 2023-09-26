@@ -1,4 +1,4 @@
-import FormularioCurso from "../components/FormularioCurso"
+import FormularioCurso from "../components/FormularioServicio"
 
 const NuevoCurso = () => {
     return (

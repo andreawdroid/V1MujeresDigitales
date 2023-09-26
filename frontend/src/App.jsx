@@ -7,14 +7,16 @@ import OlvidePassword from './pages/OlvidePassword';
 import NuevoPassword from './pages/NuevoPassword';
 import ConfirmarCuenta from './pages/ConfirmarCuenta';
 import RutaProtegida from './layouts/RutaProtegida';
-import Cursos from './pages/Cursos';
-import NuevoCurso from './pages/NuevoCurso';
-import Curso from './pages/Curso';
-import EditarCurso from './pages/EditarCurso';
+import Cursos from './pages/Servicios';
+import NuevoCurso from './pages/NuevoServicio';
+import Curso from './pages/Servicio';
+import EditarCurso from './pages/EditarServicio';
 import Home from './pages/Home';
+import ServiciosView from './pages/ServiciosView';
+import CategoriasView from './pages/CategoriasView';
 
 import { AuthProvider } from './context/AuthProvider';
-import {  CursosProvider } from './context/CursosProvider';
+import {  CursosProvider } from './context/ServiciosProvider';
 
 function App() {
 
@@ -33,6 +35,9 @@ function App() {
               <Route path="crear-cursos" element={<NuevoCurso />} />
               <Route path="editar/:id" element={<EditarCurso />} />
               <Route path="/Home" element={<Home/>} />
+              <Route path="/Servicios" element={<ServiciosView/>} />
+              <Route path="/Categorias" element={<CategoriasView/>} />
+
 
               
             </Route>

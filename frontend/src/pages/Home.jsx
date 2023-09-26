@@ -1,104 +1,89 @@
-import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import Alerta from "../components/Alerta";
-import clienteAxios from '../config/ClienteAxios';
+import React, {useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const NuevoPassword = () => {
+
+const Home= () => {
   const params = useParams();
   const { token } = params;
-  const [password, setPassword] = useState('');
-  const [passwordModificada, setPasswordModificada] = useState(false);
-  const [tokenValido, setTokenValido] = useState(false);
   const [alerta, setAlerta] = useState({});
+  const [municipios, setMunicipios] = useState([]);
 
   useEffect(() => {
-    const comprobarToken = async () => {
-      try {
-        const { data } = await clienteAxios(`/usuarios/olvide-password/${token}`)
-        setTokenValido(true);
-      } catch (error) {
-        setAlerta({
-          msg: error.response.data.msg,
-          error: true,
-        })
-      }
-    };
-    comprobarToken();
-  }, [])
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (password.length < 6) {
-      setAlerta({
-        msg: 'El password debe ser de minimo 6 caracteres',
-        error: true,
-      })
-      return;
-    }
-
-    try {
-      const url = `/usuarios/olvide-password/${token}`;
-      const { data } = await clienteAxios.post(url, { password });
-      setAlerta({
-        msg: data.msg,
-        error: false,
-      })
-      setPasswordModificada(true);
-    } catch (error) {
-      setAlerta({
-        msg: error.response.data.msg,
-        error: true,
-      })
-    }
-  };
+    // Aquí debes cargar los municipios desde tu API y guardarlos en el estado 'municipios'
+    // Ejemplo de cómo cargar municipios ficticios:
+    const municipiosFicticios = [
+      { codigo: "001", nombre: "Popayan" },
+      { codigo: "002", nombre: "Caldas" },
+      { codigo: "003", nombre: "Santa Marta" },
+      { codigo: "002", nombre: "Pereira" },
+      { codigo: "003", nombre: "Calarca" },
+      { codigo: "002", nombre: "Florencia" },
+      { codigo: "003", nombre: "Leticia" },
+    ];
+    setMunicipios(municipiosFicticios);
+  }, []);
 
   const { msg } = alerta;
 
   return (
-    <>
-      <h1 className="text-sky-600 font-black text-6xl capitalize">Restantraseña {''}
-        <span className="text-slate-700">proyectos</span></h1>
+    <div>
+      <nav className="bg-white-500  font-bold p-4">
+        <ul className="flex space-x-4">
+          <li>
+            <a href="/">Salir</a>
+          </li>
+          <li>
+            <a href="/Home">Municipios</a>
+          </li>
+          <li>
+            <a href="/Categorias">Categorias</a>
+          </li>
+          <li>
+            <a href="/Servicios">Servicios</a>
+          </li>
+        </ul>
+      </nav>
 
-      {msg && <Alerta alerta={alerta} />}
-
-      {tokenValido && (
-        <form
-          onSubmit={handleSubmit}
-          className="my-10 bg-white shadow-md rounded-lg p-10">
-          <div className="my-5">
-            <label
-              htmlFor="password"
-              className="uppercase text-gray-600 block text-xl font-bold"
-            >Nueva Password</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Escribe tu nueva contraseña de registro"
-              className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
-          </div>
-          <input
-            type="submit"
-            value="Guardar nueva password"
-            className="bg-sky-700 mb-5 w-full py-3 text-white uppercase font-bold rounded cursor-pointer transition-all hover:bg-sky-800"
-          />
-        </form>
-      )}
-
-      {passwordModificada && (
-        <Link
-          to='/'
-          className="block text-center my-5 text-slate-500 uppercase text-sm hover:underline"
+   
+      <h1 className="text-pink-600 font-black text-6xl capitalize">Municipios</h1>
+      {municipios.length === 0 ? (
+        <p>No hay municipios disponibles.</p>
+      ) : (
+        <table className="w-full mt-4 bg-white rounded-lg overflow-hidden">
+          <thead>
+            <tr>
+              <th className="border p-2">Código</th>
+              <th className="border p-2">Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+  {municipios.map((municipio) => (
+    <tr key={municipio.codigo} className="hover:bg-pink-200 transition-all">
+      <td className="border p-2">{municipio.codigo}</td>
+      <td className="border p-2">{municipio.nombre}</td>
+      <td className="border p-2">
+        <button
+          className="bg-gray-500 text-white py-1 px-2 rounded-lg hover:bg-blue-600"
         >
-          Inicia sesion
-        </Link>
-      )}
+          Editar
+        </button>
+      </td>
+      <td className="border p-2">
+        <button
+          className="bg-red-500 text-white py-1 px-2 rounded-lg hover:bg-red-600"
+        >
+          Borrar
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
 
-    </>
-  )
+        </table>
+      )}
+    
+</div>
+  );
 }
 
-export default NuevoPassword
+export default Home;

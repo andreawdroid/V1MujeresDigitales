@@ -6,12 +6,12 @@ const Header = () => {
     return (
         <header className='px-4 py-5 bg-white border-b'>
                  <div className='md:flex md:justify-between items-center'>
-                <div className='text-green-600 font-black text-center md:text-4xl'>
+                <div className='text-pink-600 font-black text-center md:text-4xl'>
                     <div className="flex flex-col items-center">
-                        EducateYa
+                        Mujeres
                         <div className='text-xs md:text-xs'>
-                            <Link to="src/img/click.png">
-                            <img src='/src/img/click.png' alt='Icono' />
+                            <Link to="src/img/mujer.png">
+                            <img src='/src/img/mujer.png' alt='Icono' />
 
                             </Link>
                         </div>
@@ -37,7 +37,7 @@ const Header = () => {
 
                     <button
                         type="button"
-                        className='text-white text-sm bg-green-600 p-3 rounded-md uppercase font-bold'
+                        className='text-white text-sm bg-pink-600 p-3 rounded-md uppercase font-bold'
                     >
                         Cerrar sesion
                     </button>
