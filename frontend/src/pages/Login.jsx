@@ -77,23 +77,17 @@ const Login = () => {
             />
           </div>
           <Link to="/Home" className="bg-pink-700 w-full py-2 px-3 text-white uppercase text-sm font-semibold rounded cursor-pointer hover:bg-pink-800">
-  Iniciar sesión
-</Link>
+            Iniciar sesión
+          </Link>
         </form>
 
         <nav class="lg:flex lg:justify-between mt-5">
-          <Link
-            to="registrar"
-            class="block text-center text-slate-500 uppercase text-sm hover:underline mb-2 lg:mb-0"
-          >
-            No tienes una cuenta? Registrate
-          </Link>
-          <Link
-            to="olvide-password"
-            class="block text-center text-slate-500 uppercase text-sm hover:underline"
-          >
-            Olvidé mi contraseña
-          </Link>
+          <div class="block text-center text-slate-500 uppercase text-sm hover:underline mb-2 lg:mb-0">
+            <Link to="registrar">No tienes una cuenta? Regístrate</Link>
+          </div>
+          <div class="block text-center text-slate-500 uppercase text-sm hover:underline">
+            <Link to="olvide-password">Olvidé mi contraseña</Link>
+          </div>
         </nav>
       </div>
     </>

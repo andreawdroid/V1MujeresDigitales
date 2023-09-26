@@ -36,7 +36,7 @@ const OlvidePassword = () => {
 
   return (
     <>
-      <h1 className="text-pink-600 font-black text-6xl capitalize">Recupera Tu {''}
+      <h1 className="text-pink-600 font-black text-center text-6xl capitalize">Recupera Tu {''}
         <span className="text pink-700">Contraseña</span>
       </h1>
 

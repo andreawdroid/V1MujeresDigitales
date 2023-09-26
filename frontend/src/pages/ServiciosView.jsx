@@ -13,9 +13,9 @@ const Servicios = () => {
 
     // Ejemplo de cómo cargar servicios ficticios:
     const serviciosFicticios = [
-      { codigo: "001", nombre: "Gym" },
-      { codigo: "002", nombre: "Gimanasia" },
-      { codigo: "003", nombre: "Meditacion" },
+      { codigo: "001", nombre: "Gym", descripcion: "realiza ejercicio este lunes...." },
+      { codigo: "002", nombre: "Gimnasia", descripcion: "Motivate a realizar gimnasia para mejorar..." },
+      { codigo: "003", nombre: "Meditacion", descripcion: "Regale a tu cuerpo un descanso..." },
      
     ];
     setServicios(serviciosFicticios);
@@ -51,6 +51,7 @@ const Servicios = () => {
             <tr>
               <th className="border p-2">Código</th>
               <th className="border p-2">Nombre</th>
+              <th className="border p-2">Descripcion</th>
             </tr>
           </thead>
           <tbody>
@@ -58,6 +59,7 @@ const Servicios = () => {
               <tr key={servicio.codigo} className="hover:bg-pink-200 transition-all">
                 <td className="border p-2">{servicio.codigo}</td>
                 <td className="border p-2">{servicio.nombre}</td>
+                <td className="border p-2">{servicio.descripcion}</td>
                 <td className="border p-2">
                   <button
                     className="bg-gray-500 text-white py-1 px-2 rounded-lg hover:bg-blue-600"

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import deporte from "../img/deporte.jpg"
 
 const Home = () => {
   const params = useParams();
@@ -27,9 +28,9 @@ const Home = () => {
   // Ejemplo de definición de callouts
   const callouts = [
     {
-      name: "Categoría 1",
+      name: "Deportes",
       description: "Descripción de la Categoría 1",
-      imageSrc: "imagen_categoria_1.jpg",
+      imageSrc: "../img/deporte.png",
       imageAlt: "Imagen de la Categoría 1",
       href: "/categoria/1",
     },
