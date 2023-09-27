@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Header from "../components/Header.jsx";
 import deporte from "../img/deporte.jpg"
 
 const Home = () => {
@@ -46,6 +47,7 @@ const Home = () => {
 
   return (
     <div>
+       <Header />
       <nav className="bg-white-500  font-bold p-4">
         <ul className="flex space-x-4">
           <li>
@@ -64,7 +66,7 @@ const Home = () => {
       </nav>
 
       <div className="flex items-center justify-between p-4">
-        <h1 className="text-pink-600 font-black text-6xl capitalize">Municipios</h1>
+        <h1 className="text-pink-600 font-black text-6xl capitalize">Categorias</h1>
         <button
           className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600"
           onClick={() => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useCursos from "../hooks/useCursos";
+import useCursos from "../hooks/useServicios";
 import Alerta from "./Alerta";
 
 const FormularioCurso = ({curso}) => {

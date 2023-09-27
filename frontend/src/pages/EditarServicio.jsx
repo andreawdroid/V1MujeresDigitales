@@ -1,18 +1,18 @@
-import useCursos from "../hooks/useCursos";
+import useServicios from "../hooks/useServicios";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import FormularioCurso from "../components/FormularioServicio";
 
-const EditarCurso = () => {
+
+const EditarServicio = () => {
   const params = useParams();
   const { id } = params;
-  const { obtenerCurso, curso, cargando } = useCursos();
+  const { obtenerServicio, servicio, cargando } = useServicios();
 
   useEffect(() => {
-    obtenerCurso(id);
+    obtenerServicio(id);
   }, []);
 
-  const { nombre } = curso;
+  const { nombre } = servicio;
 
   if (cargando) return 'Cargando...';
 
@@ -22,10 +22,10 @@ const EditarCurso = () => {
         <h1 className="font-black text-4xl">Editar Curso: {nombre}</h1>
       </div>
       <div className='mt-10 flex justify-center'>
-        <FormularioCurso curso={curso} />
+        <FormularioCurso servicio={servicio} />
       </div>
     </>
   );
 }
 
-export default EditarCurso;
+export default EditarServicio;
