@@ -9,7 +9,7 @@ import ConfirmarCuenta from './pages/ConfirmarCuenta';
 import RutaProtegida from './layouts/RutaProtegida';
 import Cursos from './pages/Servicios';
 import NuevoCurso from './pages/NuevoServicio';
-import Curso from './pages/Servicio';
+
 import EditarCurso from './pages/EditarServicio';
 import Home from './pages/Home';
 import ServiciosView from './pages/ServiciosView';
