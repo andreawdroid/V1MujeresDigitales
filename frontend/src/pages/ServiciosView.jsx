@@ -8,114 +8,50 @@ const Servicios = () => {
   const [alerta, setAlerta] = useState({});
   const [servicios, setServicios] = useState([]);
   const [nombreServicio, setNombreServicio] = useState("");
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
-
-  useEffect(() => {
-    // Carga los servicios desde tu API o fuente de datos
-
-    // Ejemplo de cómo cargar servicios ficticios:
-    const serviciosFicticios = [
-      { codigo: "001", nombre: "Gym" },
-      { codigo: "002", nombre: "Gimanasia" },
-      { codigo: "003", nombre: "Meditacion" },
-    ];
-    setServicios(serviciosFicticios);
-  }, []);
+  
+ 
 
   const { msg } = alerta;
 
-  // Función para manejar el envío del formulario
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Agregar lógica para guardar el nombre del servicio
-    const nuevoServicio = { codigo: servicios.length + 1, nombre: nombreServicio };
-    setServicios([...servicios, nuevoServicio]);
-
-    // Limpiar el campo de nombre y ocultar el formulario
-    setNombreServicio("");
-    setMostrarFormulario(false);
-  };
-
-  // Función para manejar la eliminación de un servicio
-  const handleDelete = (codigo) => {
-    // Filtrar los servicios para eliminar el que tenga el código correspondiente
-    const nuevosServicios = servicios.filter((servicio) => servicio.codigo !== codigo);
-    setServicios(nuevosServicios);
-  };
+  
 
   return (
     <div>
       <Header /> {/* Aquí se agrega el componente Header */}
 
-      <div className="flex items-center justify-between p-4">
-        <h1 className="text-pink-600 font-black text-6xl capitalize">Servicios</h1>
-        <button
-          className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600"
-          onClick={() => {
-            // Mostrar el formulario al hacer clic en "Agregar"
-            setMostrarFormulario(true);
-          }}
-        >
-          Agregar
-        </button>
-      </div>
-
-      {mostrarFormulario ? (
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="nombreServicio" className="block text-gray-700">
-              Nombre del Servicio:
-            </label>
-            <input
-              type="text"
-              id="nombreServicio"
-              className="border rounded-lg py-2 px-3"
-              value={nombreServicio}
-              onChange={(e) => setNombreServicio(e.target.value)}
-            />
-          </div>
-          <button
-            type="submit"
-            className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600"
-          >
-            Guardar
-          </button>
-        </form>
-      ) : null}
-
-      {servicios.length === 0 ? (
-        <p>No hay servicios disponibles.</p>
-      ) : (
-        <table className="w-full mt-4 bg-white rounded-lg overflow-hidden">
-          <thead>
+      
+      <div className="flex justify-center"> {/* Centrar horizontalmente */}
+        <table className="w-2/3 md:w-1/2 text-center bg-white rounded-lg overflow-hidden">
+          <thead className="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
             <tr>
-              <th className="border p-2">Código</th>
-              <th className="border p-2">Nombre</th>
+              <th scope="col" className="px-3 py-2">#</th>
+              <th scope="col" className="px-3 py-2">Nombre</th>
+              <th scope="col" className="px-3 py-2">Descripcion</th>
+              <th scope="col" className="px-3 py-2">Categoria</th>
             </tr>
           </thead>
           <tbody>
-            {servicios.map((servicio) => (
-              <tr key={servicio.codigo} className="hover:bg-pink-200 transition-all">
-                <td className="border p-2">{servicio.codigo}</td>
-                <td className="border p-2">{servicio.nombre}</td>
-                <td className="border p-2">{servicio.descripcion}</td>
-                <td className="border p-2">
-                  <button className="bg-white-500 text-black py-1 px-2 rounded-lg relative">
-                    ✏️ Editar
-                  </button>
-                  <button
-                    className="bg-white-500 text-black py-1 px-2 rounded-lg relative"
-                    onClick={() => handleDelete(servicio.codigo)}
-                  >
-                    🗑️ Borrar
-                  </button>
-                </td>
-              </tr>
-            ))}
+            <tr className="border-b dark:border-neutral-500">
+              <td className="whitespace-nowrap px-3 py-2 font-medium">1</td>
+              <td className="whitespace-nowrap px-3 py-2">Gym</td>
+              <td className="whitespace-nowrap px-3 py-2">Para que mejores tu salud</td>
+              <td className="whitespace-nowrap px-3 py-2">Cuidado Perosnal</td>
+            </tr>
+            <tr className="border-b dark:border-neutral-500">
+              <td className="whitespace-nowrap px-3 py-2 font-medium">2</td>
+              <td className="whitespace-nowrap px-3 py-2">Natacion</td>
+              <td className="whitespace-nowrap px-3 py-2">Para Nadar</td>
+              <td className="whitespace-nowrap px-3 py-2">Deporte</td>
+            </tr>
+            <tr className="border-b dark:border-neutral-500">
+              <td className="whitespace-nowrap px-3 py-2 font-medium">3</td>
+              <td className="whitespace-nowrap px-3 py-2">Larry the Bird</td>
+              <td className="whitespace-nowrap px-3 py-2">Popayan</td>
+              <td className="whitespace-nowrap px-3 py-2">Popayan</td>
+            </tr>
           </tbody>
         </table>
-      )}
+      </div>
     </div>
   );
 };

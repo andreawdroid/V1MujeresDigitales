@@ -10,14 +10,14 @@ import RutaProtegida from './layouts/RutaProtegida';
 import Cursos from './pages/Servicios';
 import NuevoCurso from './pages/NuevoServicio';
 import AuthHome from './layouts/AuthHome';
-
+import CrearMunicipios from './pages/CrearMunicipios'
 
 import EditarCurso from './pages/EditarServicio';
 import Home from './pages/ViewMunicipios';
 import ViewMunicipios from './pages/ViewMunicipios';
 import ServiciosView from './pages/ServiciosView';
 import CategoriasView from './pages/CategoriasView';
-import HomeMujer from './pages/EditarServicio';
+import HomeMujer from './pages/HomeMujer';
 
 import { AuthProvider } from './context/AuthProvider';
 import {  CursosProvider } from './context/ServiciosProvider';
@@ -44,6 +44,7 @@ function App() {
             <Route path='/Home' element={<AuthHome/>} />
             <Route path='/HomeMujer' element={<HomeMujer/>} />
             <Route path='/ViewMunicipios' element={<ViewMunicipios/>} />
+            <Route path='/CrearMunicipios' element={<CrearMunicipios/>} />
             <Route path="crear-cursos" element={<NuevoCurso />} />
               <Route path="editar/:id" element={<EditarCurso />} />
               
