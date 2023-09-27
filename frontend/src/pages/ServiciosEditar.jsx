@@ -31,3 +31,5 @@ const Curso = () => {
 }
 
 export default Curso;
+
+

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Header from "../components/Header.jsx";
 
 const Servicios = () => {
   const params = useParams();
@@ -17,7 +18,6 @@ const Servicios = () => {
       { codigo: "001", nombre: "Gym" },
       { codigo: "002", nombre: "Gimanasia" },
       { codigo: "003", nombre: "Meditacion" },
-     
     ];
     setServicios(serviciosFicticios);
   }, []);
@@ -46,22 +46,7 @@ const Servicios = () => {
 
   return (
     <div>
-      <nav className="bg-white-500 font-bold p-4">
-        <ul className="flex space-x-4">
-          <li>
-            <a href="/">Salir</a>
-          </li>
-          <li>
-            <a href="/Home">Municipios</a>
-          </li>
-          <li>
-            <a href="/Categorias">Categorias</a>
-          </li>
-          <li>
-            <a href="/Servicios">Servicios</a>
-          </li>
-        </ul>
-      </nav>
+      <Header /> {/* Aquí se agrega el componente Header */}
 
       <div className="flex items-center justify-between p-4">
         <h1 className="text-pink-600 font-black text-6xl capitalize">Servicios</h1>
@@ -116,11 +101,9 @@ const Servicios = () => {
                 <td className="border p-2">{servicio.nombre}</td>
                 <td className="border p-2">{servicio.descripcion}</td>
                 <td className="border p-2">
-                <button
-    className="bg-white-500 text-black py-1 px-2 rounded-lg relative"
-  >
-    ✏️ Editar
-  </button>
+                  <button className="bg-white-500 text-black py-1 px-2 rounded-lg relative">
+                    ✏️ Editar
+                  </button>
                   <button
                     className="bg-white-500 text-black py-1 px-2 rounded-lg relative"
                     onClick={() => handleDelete(servicio.codigo)}

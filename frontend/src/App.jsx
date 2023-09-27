@@ -9,11 +9,15 @@ import ConfirmarCuenta from './pages/ConfirmarCuenta';
 import RutaProtegida from './layouts/RutaProtegida';
 import Cursos from './pages/Servicios';
 import NuevoCurso from './pages/NuevoServicio';
+import AuthHome from './layouts/AuthHome';
+
 
 import EditarCurso from './pages/EditarServicio';
-import Home from './pages/Home';
+import Home from './pages/ViewMunicipios';
+import ViewMunicipios from './pages/ViewMunicipios';
 import ServiciosView from './pages/ServiciosView';
 import CategoriasView from './pages/CategoriasView';
+import HomeMujer from './pages/EditarServicio';
 
 import { AuthProvider } from './context/AuthProvider';
 import {  CursosProvider } from './context/ServiciosProvider';
@@ -32,16 +36,21 @@ function App() {
               <Route path='olvide-password' element={<OlvidePassword />} />
               <Route path='olvide-password/:token' element={<NuevoPassword />} />
               <Route path='confirmar/:id' element={<ConfirmarCuenta />} />
-              <Route path="crear-cursos" element={<NuevoCurso />} />
-              <Route path="editar/:id" element={<EditarCurso />} />
-              <Route path="/Home" element={<Home/>} />
-              <Route path="/Servicios" element={<ServiciosView/>} />
-              <Route path="/Categorias" element={<CategoriasView/>} />
+             
 
 
               
             </Route>
-            <Route path="/cursos" element={<RutaProtegida />}>
+            <Route path='/Home' element={<AuthHome/>} />
+            <Route path='/HomeMujer' element={<HomeMujer/>} />
+            <Route path='/ViewMunicipios' element={<ViewMunicipios/>} />
+            <Route path="crear-cursos" element={<NuevoCurso />} />
+              <Route path="editar/:id" element={<EditarCurso />} />
+              
+              <Route path="/Servicios" element={<ServiciosView/>} />
+              <Route path="/Categorias" element={<CategoriasView/>} />
+
+            <Route path="/cursos" element={<AuthHome/>}>
               <Route index element={<Cursos />} />
               
             </Route>

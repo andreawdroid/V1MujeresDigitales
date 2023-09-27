@@ -1,38 +1,35 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
-import Alerta from "../components/Alerta";
-import clienteAxios from "../config/ClienteAxios";
-import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom"; // Importa el componente Link de React Router para la navegación.
+import { useState } from "react"; // Importa el hook useState de React para gestionar el estado.
+import Alerta from "../components/Alerta"; // Importa el componente Alerta desde una ubicación relativa.
+import clienteAxios from "../config/ClienteAxios"; // Importa una instancia de cliente Axios configurada previamente.
+import useAuth from "../hooks/useAuth"; // Importa el hook useAuth para gestionar la autenticación.
 
 const Login = () => {
-  const params = useParams();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [alerta, setAlerta] = useState({});
-
-  const { SetAuth } = useAuth();
+  const [email, setEmail] = useState(''); // Estado para almacenar el correo electrónico.
+  const [password, setPassword] = useState(''); // Estado para almacenar la contraseña.
+  const [alerta, setAlerta] = useState({}); // Estado para mostrar mensajes de alerta.
+  const { SetAuth } = useAuth(); // Obtiene una función relacionada con la autenticación desde el hook useAuth.
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Evita la recarga de la página al enviar el formulario.
 
-    if ([email, password].includes("")) {
+    // Comprueba si alguno de los campos (email o password) está vacío y muestra una alerta si es así.
+    if ([email, password].includes('')) {
       setAlerta({
-        msg: "Todos los campos son obligatorios",
+        msg: 'Todos los campos son obligatorios',
         error: true,
       });
-      return;
+      return; // Sale de la función para evitar la ejecución posterior del código.
     }
 
     try {
-      const { data } = await clienteAxios.post("/usuarios/login", {
-        email,
-        password,
-      });
-      setAlerta({});
-      localStorage.setItem("token", data.token);
-      SetAuth(data);
+      // Realiza una solicitud al servidor para iniciar sesión con los datos proporcionados.
+      const { data } = await clienteAxios.post('/usuarios/login', { email, password });
+      setAlerta({}); // Borra cualquier mensaje de alerta existente.
+      localStorage.setItem('token', data.token); // Almacena un token de autenticación en el almacenamiento local.
+      SetAuth(data); // Realiza alguna acción relacionada con la autenticación (probablemente guarda el estado de autenticación).
     } catch (error) {
+      // Captura y muestra un mensaje de error si la solicitud al servidor falla.
       setAlerta({
         msg: error.response.data.msg,
         error: true,
@@ -40,40 +37,40 @@ const Login = () => {
     }
   };
 
-  const { msg } = alerta;
+  const { msg } = alerta; // Extrae el mensaje de alerta del estado de alerta.
+
   return (
     <>
-      {msg && <Alerta alerta={alerta} />}
-      <div class="flex flex-col items-center bg-white justify-center my-20 p-10 shadow-lg rounded-xl">
-        <form class="w-96">
-          <div class="my-5">
-            <h6 class="text-pink-600 font-black text-4xl text-center">
-              Ingresa
-            </h6>
+      {msg && <Alerta alerta={alerta} />} {/* Muestra el componente Alerta si hay un mensaje de alerta. */}
+      <div className="flex flex-col items-center bg-white justify-center my-20 p-10 shadow-lg rounded-xl">
+        <form className="w-96" onSubmit={handleSubmit}>
+          <div className="my-5">
+            <h6 className="text-pink-600 font-black text-4xl text-center">Ingresa</h6>
           </div>
-          <div class="my-5">
-            <label for="email" class="text-gray-500 block text-xl font-bold">
+          <div className="my-5">
+            <label htmlFor="email" className="text-gray-500 block text-xl font-bold">
               Correo Electrónico
             </label>
             <input
-              id="Correo"
+              id="email"
               type="email"
               placeholder="Email de registro"
-              class="w-full shadow-md rounded-xl mt-3 p-3 border bg-blue-50"
+              className="w-full shadow-md rounded-xl mt-3 p-3 border bg-blue-50"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div class="my-5">
-            <label
-              for="Contraseña"
-              class="text-gray-500 block text-xl font-bold"
-            >
+          <div className="my-5">
+            <label htmlFor="password" className="text-gray-500 block text-xl font-bold">
               Contraseña
             </label>
             <input
               id="password"
               type="password"
               placeholder="Contraseña de registro"
-              class="w-full shadow-md rounded-xl mt-3 p-3 border bg-blue-50"
+              className="w-full shadow-md rounded-xl mt-3 p-3 border bg-blue-50"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <Link to="/Home" className="bg-pink-700 w-full py-2 px-3 text-white uppercase text-sm font-semibold rounded cursor-pointer hover:bg-pink-800">
