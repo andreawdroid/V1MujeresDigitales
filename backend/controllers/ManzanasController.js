@@ -27,44 +27,31 @@ export const getAllManzanas = async (req, res) => {
 //** Actualizar manzanas */
 
 export const updateManzana = async (req, res) => {
+    const { idManzanas } = req.params
     try {
-        const { codigo } = req.params; // Obtén el código de la manzana a actualizar desde la URL
-        const { nuevoNombre, nuevaLocalidad, nuevaDireccion, nuevoIdMunicipios } = req.body; // Obtén los nuevos valores desde el cuerpo de la solicitud
-
-        // Busca la manzana por su código
-        const manzana = await Manzanas.findOne({
-            where: { codigo: codigo }
-        });
-
-        // Si no se encuentra la manzana, responde con un error
-        if (!manzana) {
-            return res.status(404).json({ error: 'Manzana no encontrada' });
-        }
-
-        // Actualiza los campos de la manzana con los nuevos valores
-        if (nuevoNombre) {
-            manzana.nombre = nuevoNombre;
-        }
-        if (nuevaLocalidad) {
-            manzana.localidad = nuevaLocalidad;
-        }
-        if (nuevaDireccion) {
-            manzana.direccion = nuevaDireccion;
-        }
-        if (nuevoIdMunicipios) {
-            manzana.idMunicipios = nuevoIdMunicipios;
-        }
-
-        // Guarda los cambios en la base de datos
-        await manzana.save();
-
-        // Recupera la manzana actualizada desde la base de datos
-        const manzanaActualizada = await Manzanas.findOne({
-            where: { codigo: codigo }
-        });
-
-        return res.status(200).json(manzanaActualizada);
+        await Manzanas.update(req.body, {
+            where: { idManzanas}
+        })
+        res.json({
+            msg: 'Manzanas updated successfully'
+        })
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        res.json( {message: error.message} )
+    }
+};
+
+//** Eliminar manzanas */
+
+export const deleteManzana = async (req, res) => {
+    const { idManzanas } = req.params
+    try {
+        await Manzanas.destroy({
+            where: { idManzanas}
+        })
+        res.json({
+            msg: 'Manzanas deleted successfully'
+        })
+    } catch (error) {
+        res.json( {message: error.message} )
     }
 };

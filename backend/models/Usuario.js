@@ -29,7 +29,8 @@ const Usuario = db.define('usuarios', {
     },
     correo: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     telefono: {
         type: DataTypes.STRING,

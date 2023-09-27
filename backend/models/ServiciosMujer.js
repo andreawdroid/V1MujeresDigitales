@@ -39,3 +39,6 @@ const ServicioMujer = db.define('serviciosmujer', {
         type: DataType.TIME
     }
 })
+
+//Se exporta el modelo
+export default ServicioMujer;

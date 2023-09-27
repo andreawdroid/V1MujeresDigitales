@@ -29,15 +29,31 @@ export const obtnerMunicipios = async (req, res) => {
 //** Editar municipios */
 
 export const updateMunicipio = async (req, res) => {
-    const { idMunicipios} = req.params
+    const { idMunicipios } = req.params
     try {
         await Municipios.update(req.body, {
-            where: { idMunicipios: req.params.idMunicipios}
+            where: { idMunicipios}
         })
         res.json({
-            "message":"¡Registro actualizado correctamente!"
+            msg: 'Municipios updated successfully'
         })
     } catch (error) {
         res.json( {message: error.message} )
     }
-}
+};
+
+//** Eliminar municipios */
+
+export const deleteMunicipio = async (req, res) => {
+    const { idMunicipios } = req.params
+    try {
+        await Municipios.destroy({
+            where: { idMunicipios}
+        })
+        res.json({
+            msg: 'Municipios deleted successfully'
+        })
+    } catch (error) {
+        res.json( {message: error.message} )
+    }
+};

@@ -27,3 +27,32 @@ export const mostrarCategoriaServicios = async (req, res) => {
 //** CRUD */
 
 //** Actualizar categorias */
+export const updateCategorias = async (req, res) => {
+    const { idCategoriaServicios } = req.params
+    try {
+        await  CategoriaServicios.update(req.body, {
+            where: { idCategoriaServicios }
+        })
+        res.json({
+            msg: 'Categorias updated successfully'
+        })
+    } catch (error) {
+        res.json( {message: error.message} )
+    }
+};
+
+//** Eliminar categorias */
+
+export const deleteCategorias = async (req, res) => {
+    const { idCategoriaServicios } = req.params
+    try {
+        await  CategoriaServicios.destroy({
+            where: { idCategoriaServicios }
+        })
+        res.json({
+            msg: 'Categorias deleted successfully'
+        })
+    } catch (error) {
+        res.json( {message: error.message} )
+    }
+}; 

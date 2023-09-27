@@ -40,3 +40,33 @@ export const mostrarServicios = async (req, res) => {
 //** CRUD */
 
 //** Actualizar servicios */
+
+export const updateMunicipio = async (req, res) => {
+    const { idServicios } = req.params
+    try {
+        await Servicios.update(req.body, {
+            where: { idServicios }
+        })
+        res.json({
+            msg: 'Servicios updated successfully'
+        })
+    } catch (error) {
+        res.json( {message: error.message} )
+    }
+}
+
+//** Eliminar servicios */
+
+export const deleteMunicipio = async (req, res) => {
+    const { idServicios } = req.params
+    try {
+        await Servicios.destroy({
+            where: { idServicios }
+        })
+        res.json({
+            msg: 'Servicios deleted successfully'
+        })
+    } catch (error) {
+        res.json( {message: error.message} )
+    }
+}
