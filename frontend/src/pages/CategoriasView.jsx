@@ -63,8 +63,18 @@ const Home = () => {
         </ul>
       </nav>
 
-      <h1 className="text-pink-600 font-black text-6xl capitalize">Categorias</h1>
-      {municipios.length === 0 ? (
+      <div className="flex items-center justify-between p-4">
+        <h1 className="text-pink-600 font-black text-6xl capitalize">Municipios</h1>
+        <button
+          className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600"
+          onClick={() => {
+            // Aquí puedes agregar la lógica para manejar la acción de "Agregar"
+            alert("Agregar municipio");
+          }}
+        >
+          Agregar
+        </button>
+      </div>  {municipios.length === 0 ? (
         <p>No hay municipios disponibles.</p>
       ) : (
         <div className="bg-gray-100">
