@@ -14,36 +14,41 @@ const ViewMunicipios = () => {
   return (
     <div>
       <Header />
-      <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Municipio</h1>
+      <div>
+        <div className="my-10 flex justify-center">
+          <div className="w-100 bg-white shadow-md rounded-lg p-6">
+            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Municipio</h1>
+            <div className="my-5 grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit}>
+                <div className="my-5 grid grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="nombre"
+                      className="uppercase text-gray-600 block text-xl font-bold text-center"
+                    >
+                      Nombre Municipio
+                    </label>
+                    <input
+                      id="nombre"
+                      type="text"
+                      placeholder="Ingresa nombre"
+                      className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
+                      value={nombre}
+                      onChange={(e) => setNombre(e.target.value)}
+                    />
+                  </div>
+                </div>
 
-      <div className="my-10 bg-white shadow-md rounded-lg p-10">
-        <form onSubmit={handleSubmit}>
-          <div className="my-5 grid grid-cols-2 gap-4">
-            <div>
-              <label
-                htmlFor="nombre"
-                className="uppercase text-gray-600 block text-xl font-bold"
-              >
-                Nombre Municipio
-              </label>
-              <input
-                id="nombre"
-                type="text"
-                placeholder="Ingresa nombre"
-                className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
-              />
+                <button
+                  type="submit"
+                  className="bg-pink-700 mb-5 w-full py-3 text-white  uppercase font-bold rounded cursor-pointer transition-all hover:bg-pink-800 "
+                >
+                  Añadir
+                </button>
+              </form>
             </div>
           </div>
-
-          <button
-            type="submit"
-            className="bg-pink-700 w-full py-2 px-3 text-white uppercase text-sm font-semibold rounded cursor-pointer hover:bg-pink-800 text-center my-5 flex items-center justify-center"
-          >
-            Añadir
-          </button>
-        </form>
+        </div>
 
         <nav className="lg:flex lg:justify-between">
           <Link
@@ -54,7 +59,7 @@ const ViewMunicipios = () => {
           </Link>
         </nav>
       </div>
-    </div>
+    </div >
   );
 };
 
