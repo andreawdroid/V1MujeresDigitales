@@ -19,8 +19,8 @@ const Usuario = db.define('usuarios', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    tipoDoc: {
-        type: DataTypes.ENUM('CC', 'Pasaporte', 'TI', 'CE'), // Valores permitidos
+    idTipoDocumento: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     documento: {
@@ -47,14 +47,6 @@ const Usuario = db.define('usuarios', {
     ocupacion: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    idServicios: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'Servicios', // Nombre de la tabla de servicios
-            key: 'id', // Nombre del campo de la tabla de servicios que es la clave primaria
-        },
     },
     password: {
         type: DataTypes.TEXT, // Cambiado a DataType.TEXT

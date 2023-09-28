@@ -4,18 +4,18 @@ import Alerta from "../components/Alerta";
 import clienteAxios from "../config/ClienteAxios";
 
 const Registrar = () => {
-  const [usuario, setUsuario] = useState('');
   const [nombres, setNombres] = useState('');
   const [alerta, setAlerta] = useState('');
   const [apellidos, setApellidos] = useState('');
-  const [tipoDoc, setTipoDoc] = useState('');
+  const [idTipoDocumento, setIdTipoDocumento] = useState('');
   const [documento, setDocumento] = useState('');
   const [correo, setCorreo] = useState('');
   const [telefono, setTelefono] = useState('');
   const [ciudad, setCiudad] = useState('');
   const [direccion, setDireccion] = useState('');
   const [ocupacion, setOcupacion] = useState('');
-  const [idServicios, setIdServicios] = useState('');
+  const [idServicios, setIdServicios] = useState('asd');
+  const [idRol, setIdRol] = useState(2);
   const [password, setPassword] = useState('');
 
 
@@ -23,33 +23,42 @@ const Registrar = () => {
     e.preventDefault();
 
     // Validación para verificar que todos los campos obligatorios estén completos
-    if (!nombres || !apellidos || !tipoDoc || !documento || !correo || !telefono || !ciudad || !direccion || !ocupacion || !idServicios || !password) {
+    if ([nombres, apellidos, idTipoDocumento, documento, correo, telefono, ciudad, direccion, ocupacion, idServicios, password].includes('')) {
       setAlerta({
         msg: "Todos los campos son requeridos",
         error: true,
       });
       return;
     }
+    if (password.length < 6) {
+      setAlerta({
+        msg: 'El password es muy corto, agrega minimo 6 caracteristicas',
+        error: true
+      })
+      return
+    }
+    setAlerta({})
 
     try {
-      const { data } = await clienteAxios.post("usuarios", {
+      const { data } = await clienteAxios.post("/usuario", {
         nombres,
         apellidos,
-        tipoDoc,
         documento,
         correo,
         telefono,
         ciudad,
         direccion,
         ocupacion,
-        idServicios,
-        password
+        idRol,
+        password,
+        idTipoDocumento,
       });
 
       setAlerta({
         msg: data.msg,
         error: false,
       });
+      alert(data.msg)
 
       // Limpiar los campos después de un registro exitoso
       setNombres('');
@@ -71,8 +80,6 @@ const Registrar = () => {
     }
   };
 
-  
-
 
   const { msg } = alerta;
 
@@ -90,7 +97,7 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Nombres</label>
               <input
-                id="nombres"
+                name="nombres"
                 type="text"
                 placeholder="Ingresa tus nombres"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
@@ -104,7 +111,7 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Apellido</label>
               <input
-                id="apellidos"
+                name="apellidos"
                 type="text"
                 placeholder="Ingresa tus apellidos"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
@@ -115,19 +122,19 @@ const Registrar = () => {
 
             <div>
               <label
-                htmlFor="tipoDoc"
+                htmlFor="idTipoDocumento"
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Tipo de Documento</label>
               <select
-                id="tipoDoc"
-                value={tipoDoc}
-                onChange={(e) => setTipoDoc(e.target.value)}
+                name="idTipoDocumento"
+                value={idTipoDocumento}
+                onChange={(e) => setIdTipoDocumento(e.target.value)}
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
               >
-                <option value="DNI">DNI</option>
-                <option value="Pasaporte">Pasaporte</option>
-                <option value="Cédula">Cédula</option>
-                <option value="Otro">Otro</option>
+                <option value="1">DNI</option>
+                <option value="2">Pasaporte</option>
+                <option value="3">Cédula</option>
+                <option value="4">Otro</option>
               </select>
             </div>
 
@@ -138,7 +145,7 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Documento</label>
               <input
-                id="documento"
+                name="documento"
                 type="number"
                 placeholder="Ingresa tu nùmero de documento"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
@@ -152,7 +159,7 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Correo electronico</label>
               <input
-                id="correo"
+                name="correo"
                 type="text"
                 placeholder="Ingresa tu correo electronico"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
@@ -166,7 +173,7 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Telefono</label>
               <input
-                id="telefono"
+                name="telefono"
                 type="number"
                 placeholder="Ingresa tu nùmero de telefono"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
@@ -180,7 +187,7 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Ciudad</label>
               <input
-                id="ciudad"
+                name="ciudad"
                 type="text"
                 placeholder="Ingresa tu ciudad"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
@@ -194,7 +201,7 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Direcciòn</label>
               <input
-                id="direccion"
+                name="direccion"
                 type="text"
                 placeholder="Ingresa tu direcion"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
@@ -209,7 +216,7 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Ocupacion</label>
               <input
-                id="ocupacion"
+                name="ocupacion"
                 type="text"
                 placeholder="Ingresa tu ocupacion"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
@@ -220,32 +227,13 @@ const Registrar = () => {
 
             <div>
               <label
-                htmlFor="idServicios"
-                className="uppercase text-gray-600 block text-xl font-bold"
-                >
-                Servicios
-              </label>
-              <select
-                id="idServicios"
-                value={idServicios}
-                onChange={(e) => setIdServicios(e.target.value)}
-                className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-              >
-                <option value="1">Servicio 1</option>
-                <option value="2">Servicio 2</option>
-                {/* Agrega más opciones según tu base de datos */}
-              </select>
-            </div>
-
-            <div>
-              <label
                 htmlFor="password"
                 className="uppercase text-gray-600 block text-xl font-bold"
                 >
                 Contraseña
               </label>
               <input
-                id="ocupacion"
+                name="password"
                 type="text"
                 placeholder="Ingresa tu contrseña"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
