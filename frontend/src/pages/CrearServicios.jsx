@@ -17,7 +17,7 @@ const CrearServicios= () => {
       <div>
         <div className="my-10 flex justify-center">
           <div className="w-100 bg-white shadow-md rounded-lg p-6">
-            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Municipio</h1>
+            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Servicios</h1>
             <div className="my-5 grid grid-cols-2 gap-4">
               <form onSubmit={handleSubmit}>
                 <div className="my-5 grid grid-cols-2 gap-4">
