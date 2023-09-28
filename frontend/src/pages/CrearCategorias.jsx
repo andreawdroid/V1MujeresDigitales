@@ -17,7 +17,7 @@ const ViewMunicipios = () => {
       <div>
         <div className="my-10 flex justify-center">
           <div className="w-100 bg-white shadow-md rounded-lg p-6">
-            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Municipio</h1>
+            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Categorias</h1>
             <div className="my-5 grid grid-cols-2 gap-4">
               <form onSubmit={handleSubmit}>
                 <div className="my-5 grid grid-cols-2 gap-4">
@@ -26,7 +26,7 @@ const ViewMunicipios = () => {
                       htmlFor="nombre"
                       className="uppercase text-gray-600 block text-xl font-bold text-center"
                     >
-                      Nombre Municipio
+                      Nombre Categorias
                     </label>
                     <input
                       id="nombre"
@@ -52,14 +52,14 @@ const ViewMunicipios = () => {
 
         <nav className="lg:flex lg:justify-between">
           <Link
-            to="/"
+            to="/ViewManzanas"
             className="block text-center my-5 text-slate-500 uppercase text-sm hover:underline"
           >
-            Ya tienes una cuenta? Inicia sesión
+            Atras
           </Link>
         </nav>
       </div>
-    </div >
+    </div>
   );
 };
 
