@@ -21,6 +21,11 @@ import ServiciosView from './pages/ServiciosView';
 import CrearServicios from './pages/CrearServicios';
 import CategoriasView from './pages/CategoriasView';
 import CrearCategorias from './pages/CrearCategorias';
+
+import ManzanasView from  './pages/ViewManzanas';
+
+
+import CrearManzanas from './pages/CrearManzanas';
 import HomeMujer from './pages/HomeMujer';
 
 import { AuthProvider } from './context/AuthProvider';
@@ -50,6 +55,11 @@ function App() {
             <Route path='/CrearServicios' element={<CrearServicios />} />
             <Route path="/Categorias" element={<CategoriasView />} />
             <Route path='/CrearCategorias' element={<CrearCategorias />} />
+            <Route path="/Manzanas" element={<ManzanasView />} />
+            <Route path='/CrearManzanas' element={<CrearManzanas />} />
+
+
+
             <Route path="crear-cursos" element={<NuevoCurso />} />
             <Route path="editar/:id" element={<EditarCurso />} />
 
