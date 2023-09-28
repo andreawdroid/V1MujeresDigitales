@@ -5,7 +5,7 @@ import clienteAxios from "../config/ClienteAxios"; // Importa una instancia de c
 import useAuth from "../hooks/useAuth"; // Importa el hook useAuth para gestionar la autenticación.
 
 const Login = () => {
-  const [email, setEmail] = useState(''); // Estado para almacenar el correo electrónico.
+  const [correo, setCorreo] = useState(''); // Estado para almacenar el correo electrónico.
   const [password, setPassword] = useState(''); // Estado para almacenar la contraseña.
   const [alerta, setAlerta] = useState({}); // Estado para mostrar mensajes de alerta.
   const { SetAuth } = useAuth(); // Obtiene una función relacionada con la autenticación desde el hook useAuth.
@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault(); // Evita la recarga de la página al enviar el formulario.
 
     // Comprueba si alguno de los campos (email o password) está vacío y muestra una alerta si es así.
-    if ([email, password].includes('')) {
+    if ([correo, password].includes('')) {
       setAlerta({
         msg: 'Todos los campos son obligatorios',
         error: true,
@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       // Realiza una solicitud al servidor para iniciar sesión con los datos proporcionados.
-      const { data } = await clienteAxios.post('/usuarios/login', { email, password });
+      const { data } = await clienteAxios.post('/usuarios/login', { correo, password });
       setAlerta({}); // Borra cualquier mensaje de alerta existente.
       localStorage.setItem('token', data.token); // Almacena un token de autenticación en el almacenamiento local.
       SetAuth(data); // Realiza alguna acción relacionada con la autenticación (probablemente guarda el estado de autenticación).
@@ -48,16 +48,16 @@ const Login = () => {
             <h6 className="text-pink-600 font-black text-4xl text-center">Ingresa</h6>
           </div>
           <div className="my-5">
-            <label htmlFor="email" className="text-gray-500 block text-xl font-bold">
+            <label htmlFor="correo" className="text-gray-500 block text-xl font-bold">
               Correo Electrónico
             </label>
             <input
-              id="email"
+              id="correo"
               type="email"
               placeholder="Email de registro"
               className="w-full shadow-md rounded-xl mt-3 p-3 border bg-blue-50"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={correo}
+              onChange={(e) => set(e.target.value)}
             />
           </div>
           <div className="my-5">
@@ -73,9 +73,11 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Link to="/HomeMujer" className="bg-pink-700 w-full py-2 px-3 text-white uppercase text-sm font-semibold rounded cursor-pointer hover:bg-pink-800">
-            Iniciar sesión
-          </Link>
+          <input
+            type="submit"
+            value="Iniciar Seccion"
+            className="bg-pink-700 w-full py-2 px-3 text-white uppercase text-sm font-semibold rounded cursor-pointer hover:bg-pink-800"
+          />
         </form>
 
         <nav class="lg:flex lg:justify-between mt-5">

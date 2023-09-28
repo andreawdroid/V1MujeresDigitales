@@ -20,7 +20,7 @@ const Usuario = db.define('usuarios', {
         allowNull: false
     },
     tipoDoc: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM('CC', 'Pasaporte', 'TI', 'CE'), // Valores permitidos
         allowNull: false
     },
     documento: {
@@ -50,7 +50,11 @@ const Usuario = db.define('usuarios', {
     },
     idServicios: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: 'Servicios', // Nombre de la tabla de servicios
+            key: 'id', // Nombre del campo de la tabla de servicios que es la clave primaria
+        },
     },
     password: {
         type: DataTypes.TEXT, // Cambiado a DataType.TEXT

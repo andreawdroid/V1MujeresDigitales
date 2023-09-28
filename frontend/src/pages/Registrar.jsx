@@ -4,57 +4,75 @@ import Alerta from "../components/Alerta";
 import clienteAxios from "../config/ClienteAxios";
 
 const Registrar = () => {
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
+  const [usuario, setUsuario] = useState('');
+  const [nombres, setNombres] = useState('');
+  const [alerta, setAlerta] = useState('');
+  const [apellidos, setApellidos] = useState('');
+  const [tipoDoc, setTipoDoc] = useState('');
+  const [documento, setDocumento] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [ciudad, setCiudad] = useState('');
+  const [direccion, setDireccion] = useState('');
+  const [ocupacion, setOcupacion] = useState('');
+  const [idServicios, setIdServicios] = useState('');
   const [password, setPassword] = useState('');
-  const [repetirPassword, setRepetirPassword] = useState('');
-  const [alerta, setAlerta] = useState({});
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if ([nombre, email, password, repetirPassword].includes('')) {
-      setAlerta({
-        msg: 'Todos los campos son requeridos',
-        error: true,
-      })
-      return;
-    };
 
-    if (password !== repetirPassword) {
+    // Validación para verificar que todos los campos obligatorios estén completos
+    if (!nombres || !apellidos || !tipoDoc || !documento || !correo || !telefono || !ciudad || !direccion || !ocupacion || !idServicios || !password) {
       setAlerta({
-        msg: 'Las contraseñas no coinciden',
+        msg: "Todos los campos son requeridos",
         error: true,
-      })
+      });
       return;
-    };
+    }
 
-    if (password.length < 6) {
-      setAlerta({
-        msg: 'La contraseña es muy corta, agrega mínimo 6 caracteres',
-        error: true,
-      })
-      return;
-    };
-    setAlerta({});
-
-    // Crea el usuario en la API
     try {
-      const { data } = await clienteAxios.post('/usuarios', { nombre, email, password });
+      const { data } = await clienteAxios.post("usuarios", {
+        nombres,
+        apellidos,
+        tipoDoc,
+        documento,
+        correo,
+        telefono,
+        ciudad,
+        direccion,
+        ocupacion,
+        idServicios,
+        password
+      });
+
       setAlerta({
         msg: data.msg,
         error: false,
-      })
-      setNombre('');
-      setEmail('');
-      setPassword('');
-      setRepetirPassword('');
+      });
+
+      // Limpiar los campos después de un registro exitoso
+      setNombres('');
+      setApellidos('');
+      setTipoDoc('');
+      setDocumento('');
+      setCorreo('');
+      setTelefono('');
+      setCiudad('');
+      setDireccion('');
+      setOcupacion('');
+      setIdServicios('');
+      password('');
     } catch (error) {
       setAlerta({
         msg: error.response.data.msg,
         error: true,
-      })
+      });
     }
   };
+
+  
+
 
   const { msg } = alerta;
 
@@ -68,16 +86,16 @@ const Registrar = () => {
           <div className="my-5 grid grid-cols-2 gap-4">
             <div>
               <label
-                htmlFor="nombre"
+                htmlFor="nombres"
                 className="uppercase text-gray-600 block text-xl font-bold"
-              >Nombre</label>
+              >Nombres</label>
               <input
-                id="nombre"
+                id="nombres"
                 type="text"
-                placeholder="Ingresa tu nombre"
+                placeholder="Ingresa tus nombres"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={nombre}
-                onChange={e => setNombre(e.target.value)}
+                value={nombres}
+                onChange={e => setNombres(e.target.value)}
               />
             </div>
             <div>
@@ -86,28 +104,34 @@ const Registrar = () => {
                 className="uppercase text-gray-600 block text-xl font-bold"
               >Apellido</label>
               <input
-                id="apellido"
+                id="apellidos"
                 type="text"
-                placeholder="Ingresa tu apellido"
+                placeholder="Ingresa tus apellidos"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={apellidos}
+                onChange={e => setApellidos(e.target.value)}
               />
             </div>
+
             <div>
               <label
-                htmlFor="tipo documento"
+                htmlFor="tipoDoc"
                 className="uppercase text-gray-600 block text-xl font-bold"
-              >Tipo documento</label>
-              <input
-                id="tipodocumento"
-                type="text"
-                placeholder="Ingresa tu tipo de documento"
+              >Tipo de Documento</label>
+              <select
+                id="tipoDoc"
+                value={tipoDoc}
+                onChange={(e) => setTipoDoc(e.target.value)}
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={nombre}
-                onChange={e => setNombre(e.target.value)}
-              />
+              >
+                <option value="DNI">DNI</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="Cédula">Cédula</option>
+                <option value="Otro">Otro</option>
+              </select>
             </div>
+
+
             <div>
               <label
                 htmlFor="Documento"
@@ -118,8 +142,8 @@ const Registrar = () => {
                 type="number"
                 placeholder="Ingresa tu nùmero de documento"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={documento}
+                onChange={e => setDocumento(e.target.value)}
               />
             </div>
             <div>
@@ -132,8 +156,8 @@ const Registrar = () => {
                 type="text"
                 placeholder="Ingresa tu correo electronico"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={correo}
+                onChange={e => setCorreo(e.target.value)}
               />
             </div>
             <div>
@@ -146,8 +170,8 @@ const Registrar = () => {
                 type="number"
                 placeholder="Ingresa tu nùmero de telefono"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={telefono}
+                onChange={e => setTelefono(e.target.value)}
               />
             </div>
             <div>
@@ -160,8 +184,8 @@ const Registrar = () => {
                 type="text"
                 placeholder="Ingresa tu ciudad"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={ciudad}
+                onChange={e => setCiudad(e.target.value)}
               />
             </div>
             <div>
@@ -174,8 +198,8 @@ const Registrar = () => {
                 type="text"
                 placeholder="Ingresa tu direcion"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={direccion}
+                onChange={e => setDireccion(e.target.value)}
               />
             </div>
 
@@ -189,32 +213,54 @@ const Registrar = () => {
                 type="text"
                 placeholder="Ingresa tu ocupacion"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+                value={ocupacion}
+                onChange={e => setOcupacion(e.target.value)}
               />
             </div>
+
             <div>
               <label
-                htmlFor="servicios"
+                htmlFor="idServicios"
                 className="uppercase text-gray-600 block text-xl font-bold"
-              >Servicios</label>
-              <input
-                id="servicios"
-                type="text"
-                placeholder="Ingresa tu direcion"
+                >
+                Servicios
+              </label>
+              <select
+                id="idServicios"
+                value={idServicios}
+                onChange={(e) => setIdServicios(e.target.value)}
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
+              >
+                <option value="1">Servicio 1</option>
+                <option value="2">Servicio 2</option>
+                {/* Agrega más opciones según tu base de datos */}
+              </select>
+            </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="uppercase text-gray-600 block text-xl font-bold"
+                >
+                Contraseña
+              </label>
+              <input
+                id="ocupacion"
+                type="text"
+                placeholder="Ingresa tu contrseña"
+                className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
               />
             </div>
-          </div>
-          <Link
-            to='/'
-            className="bg-pink-700 w-full py-2 px-3 text-white uppercase text-sm font-semibold rounded cursor-pointer hover:bg-pink-800 text-center my-5  flex items-center justify-center"
-          >
-            Inicia sesión
-          </Link>
 
+
+          </div>
+          <input
+            type="submit"
+            value="Registrase"
+            className="bg-pink-700 mb-5 w-full py-3 text-white uppercase font-bold rounded cursor-pointer transition-all hover:bg-pink-800"
+          />
 
         </form>
 
@@ -233,8 +279,9 @@ const Registrar = () => {
           </Link>
         </nav>
       </div>
+      {/* Resto del código... */}
     </>
   );
-}
+};
 
 export default Registrar;

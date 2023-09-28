@@ -1,22 +1,30 @@
 import Usuario from "../models/Usuario.js";
-import  bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt'
 
 //**  Creacion de usuario   */
 
 export const crearUsuario = async (req, res) => {
-  const { correo } = req.params;
-  const existeUsuario = await Usuario.find({ correo });
-
-  if (existeUsuario.length > 0) {
-    const error = new Error("Correo ya existe");
-    return res.status(400).json({ msg: error.message });
-  }
-
+  const { correo } = req.body;
   try {
+    const existeUsuario = await Usuario.findOne({ where: { correo } });
+
+    if (existeUsuario) {
+      return res.status(400).json({ msg: "Correo ya existe" });
+    }
+    const password = req.body.password;
+
+    if (!password || password.length < 6) {
+      return res.status(400).json({ msg: "La contraseña es demasiado corta" });
+    }
+    // Hashear la contraseña antes de guardarla
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    req.body.password = hashedPassword;
+
     const usuario = await Usuario.create(req.body);
-    res.status(201).json(usuario);
+    res.status(201).json({ msg: "Usuario registrado con éxito", usuario });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ msg: error.message });
   }
 };
 
@@ -44,19 +52,19 @@ export const autenticarUsuario = async (req, res) => {
 export const autenticarUsuarioRol = async (req, res) => {
   try {
     const existeUsuario = await Usuario.find({ correo });
-    
+
     if (existeUsuario.length > 0) {
       const error = new Error("Correo ya existe");
       return res.status(400).json({ msg: error.message });
     }
-  
+
     const usuario = await Usuario.create(req.body);
     res.status(201).json(usuario);
   } catch (error) {
     console.error("Error en la verificación de duplicados:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
-  
+
 };
 
 //**  Recuperar Contraseña   */
