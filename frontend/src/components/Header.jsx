@@ -11,9 +11,10 @@ const Header = () => {
             Mujeres
             <div className="text-xs md:text-xs">
               <Link to='/HomeMujer'>
-                <img src="/src/img/mujer.png" alt="Icono" />
+                <img src="/src/img/Logo.png" alt="Icono" className="w-16 h-16 md:w-12 md:h-12" />
               </Link>
             </div>
+
           </div>
         </div>
 
@@ -30,6 +31,10 @@ const Header = () => {
 
           <Link to="/Servicios" className="font-bold uppercase">
             Servicios
+          </Link>
+
+          <Link to="/Manzanas" className="font-bold uppercase">
+            Manzanas
           </Link>
 
           <Link to="/Categorias" className="font-bold uppercase">

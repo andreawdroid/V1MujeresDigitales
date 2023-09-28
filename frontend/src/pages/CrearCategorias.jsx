@@ -52,14 +52,14 @@ const ViewMunicipios = () => {
 
         <nav className="lg:flex lg:justify-between">
           <Link
-            to="/ViewMunicipios"
+            to="/"
             className="block text-center my-5 text-slate-500 uppercase text-sm hover:underline"
           >
-            Atras
+            Ya tienes una cuenta? Inicia sesión
           </Link>
         </nav>
       </div>
-    </div>
+    </div >
   );
 };
 

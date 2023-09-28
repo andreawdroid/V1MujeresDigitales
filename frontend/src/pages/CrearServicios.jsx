@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header.jsx";
 
-const ViewMunicipios = () => {
+const CrearServicios= () => {
   const [nombre, setNombre] = useState(""); // Agrega el estado para el nombre
 
   // Define la función handleSubmit para manejar el envío del formulario
@@ -17,7 +17,7 @@ const ViewMunicipios = () => {
       <div>
         <div className="my-10 flex justify-center">
           <div className="w-100 bg-white shadow-md rounded-lg p-6">
-            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Municipio</h1>
+            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Servicios</h1>
             <div className="my-5 grid grid-cols-2 gap-4">
               <form onSubmit={handleSubmit}>
                 <div className="my-5 grid grid-cols-2 gap-4">
@@ -52,10 +52,10 @@ const ViewMunicipios = () => {
 
         <nav className="lg:flex lg:justify-between">
           <Link
-            to="/ViewMunicipios"
+            to="/Servicios"
             className="block text-center my-5 text-slate-500 uppercase text-sm hover:underline"
           >
-            Atras
+           Atras
           </Link>
         </nav>
       </div>
@@ -63,4 +63,4 @@ const ViewMunicipios = () => {
   );
 };
 
-export default ViewMunicipios;
+export default CrearServicios;
