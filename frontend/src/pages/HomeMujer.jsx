@@ -2,7 +2,10 @@ import Header from "../components/Header.jsx";
 import React, { useEffect } from "react";
 import mapboxgl from "mapbox-gl"; // Importa la biblioteca mapbox-gl
 
-// Componente de mapa
+import imagen1 from "../img/deportes.jpg";
+import imagen2 from "../img/salud.jpg";
+import imagen3 from "../img/cuidadopersonal.jpg";
+
 const Map = () => {
   return (
     <div>
@@ -16,7 +19,7 @@ const Map = () => {
                 <img
                   alt="gallery"
                   class="block h-48 w-full rounded-lg object-cover object-center"
-                  src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                  src={imagen1}
                 />
                 <h2 className="text-lg font-bold text-center">DEPORTES</h2>
                   <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y 
@@ -34,7 +37,7 @@ const Map = () => {
                 <img
                   alt="gallery"
                   class="block h-48 w-full rounded-lg object-cover object-center"
-                  src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp"
+                  src={imagen2}
                 />
                 <h2 className="text-lg font-bold text-center">SALUD</h2>
                 <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y 
@@ -52,7 +55,7 @@ const Map = () => {
                 <img
                   alt="gallery"
                   class="block h-48 w-full rounded-lg object-cover object-center"
-                  src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp"
+                  src={imagen3}
                 />
                <h2 className="text-lg font-bold text-center">CUIDADO PERSONAL1</h2>
                <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y 
