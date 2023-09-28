@@ -18,28 +18,38 @@ const ViewMunicipios = () => {
         </Link>
       </div>
       <div className="flex justify-center"> {/* Centrar horizontalmente */}
-        <table className="w-2/3 md:w-1/2 text-center bg-white rounded-lg overflow-hidden">
-          <thead className="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
-            <tr>
-              <th scope="col" className="px-3 py-2">#</th>
-              <th scope="col" className="px-3 py-2">Nombre</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b dark:border-neutral-500">
-              <td className="whitespace-nowrap px-3 py-2 font-medium">1</td>
-              <td className="whitespace-nowrap px-3 py-2">Pereira</td>
-            </tr>
-            <tr className="border-b dark:border-neutral-500">
-              <td className="whitespace-nowrap px-3 py-2 font-medium">2</td>
-              <td className="whitespace-nowrap px-3 py-2">Popayan</td>
-            </tr>
-            <tr className="border-b dark:border-neutral-500">
-              <td className="whitespace-nowrap px-3 py-2 font-medium">3</td>
-              <td className="whitespace-nowrap px-3 py-2">Larry the Bird</td>
-            </tr>
-          </tbody>
-        </table>
+      <table className="w-2/3 md:w-1/2 text-center bg-white rounded-lg overflow-hidden">
+  <thead className="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+    <tr>
+      <th scope="col" className="px-3 py-2">#</th>
+      <th scope="col" className="px-3 py-2">Nombre</th>
+      <th scope="col" className="px-3 py-2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr className="border-b dark:border-neutral-500">
+      <td className="whitespace-nowrap px-3 py-2 font-medium">1</td>
+      <td className="whitespace-nowrap px-3 py-2">Pereira</td>
+      <td className="px-3 py-2">
+        <Link to="/eliminar/1" className="text-gray-500 hover:text-black-900">Eliminar</Link>
+      </td>
+    </tr>
+    <tr className="border-b dark:border-neutral-500">
+      <td className="whitespace-nowrap px-3 py-2 font-medium">2</td>
+      <td className="whitespace-nowrap px-3 py-2">Popayan</td>
+      <td className="px-3 py-2">
+        <Link to="/eliminar/2" className="text-gray-500 hover:text-black-900">Eliminar</Link>
+      </td>
+    </tr>
+    <tr className="border-b dark:border-neutral-500">
+      <td className="whitespace-nowrap px-3 py-2 font-medium">3</td>
+      <td className="whitespace-nowrap px-3 py-2">Larry the Bird</td>
+      <td className="px-3 py-2">
+        <Link to="/eliminar/3" className="text-gray-500 hover:text-black-900">Eliminar</Link>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
        
 
