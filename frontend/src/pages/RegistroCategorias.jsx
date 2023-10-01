@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header.jsx";
 
-const ViewManzanas = () => {
+const ViewMunicipios = () => {
   const [nombre, setNombre] = useState(""); // Agrega el estado para el nombre
 
   // Define la función handleSubmit para manejar el envío del formulario
@@ -17,7 +17,7 @@ const ViewManzanas = () => {
       <div>
         <div className="my-10 flex justify-center">
           <div className="w-100 bg-white shadow-md rounded-lg p-6">
-            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Añade Manzanas</h1>
+            <h1 className="text-pink-600 font-black text-4xl text-center capitalize mb-2">Registrate a este servico</h1>
             <div className="my-5 grid grid-cols-2 gap-4">
               <form onSubmit={handleSubmit}>
                 <div className="my-5 grid grid-cols-2 gap-4">
@@ -26,12 +26,12 @@ const ViewManzanas = () => {
                       htmlFor="nombre"
                       className="uppercase text-gray-600 block text-xl font-bold text-center"
                     >
-                      Nombre Manzana
+                      Nombre
                     </label>
                     <input
                       id="nombre"
                       type="text"
-                      placeholder="Ingresa nombre"
+                      placeholder="Ingresa servicio"
                       className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
                       value={nombre}
                       onChange={(e) => setNombre(e.target.value)}
@@ -70,17 +70,10 @@ const ViewManzanas = () => {
           </div>
         </div>
 
-        <nav className="lg:flex lg:justify-between">
-          <Link
-            to="/Manzanas"
-            className="block text-center my-5 text-slate-500 uppercase text-sm hover:underline"
-          >
-            atras
-          </Link>
-        </nav>
+       
       </div>
     </di>
   );
 };
 
-export default ViewManzanas;
+export default ViewMunicipios;

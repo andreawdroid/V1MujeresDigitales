@@ -59,7 +59,6 @@ const ViewManzanas = () => {
   </tbody>
 </table>
 
-       
 
       </div>
     </div>
