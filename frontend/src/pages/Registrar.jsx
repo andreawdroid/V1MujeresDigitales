@@ -40,7 +40,7 @@ const Registrar = () => {
     setAlerta({})
 
     try {
-      const { data } = await clienteAxios.post("/usuario", {
+      const { data } = await clienteAxios.post("/usuario/", {
         nombres,
         apellidos,
         documento,
@@ -58,7 +58,6 @@ const Registrar = () => {
         msg: data.msg,
         error: false,
       });
-      alert(data.msg)
 
       // Limpiar los campos después de un registro exitoso
       setNombres('');

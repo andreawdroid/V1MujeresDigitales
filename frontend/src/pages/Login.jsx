@@ -57,7 +57,7 @@ const Login = () => {
               placeholder="Email de registro"
               className="w-full shadow-md rounded-xl mt-3 p-3 border bg-blue-50"
               value={correo}
-              onChange={(e) => set(e.target.value)}
+              onChange={(e) => setCorreo(e.target.value)}
             />
           </div>
           <div className="my-5">
