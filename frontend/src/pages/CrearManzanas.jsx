@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header.jsx";
 
-const ViewMunicipios = () => {
+const ViewManzanas = () => {
   const [nombre, setNombre] = useState(""); // Agrega el estado para el nombre
 
   // Define la función handleSubmit para manejar el envío del formulario
@@ -83,4 +83,4 @@ const ViewMunicipios = () => {
   );
 };
 
-export default ViewMunicipios;
+export default ViewManzanas;

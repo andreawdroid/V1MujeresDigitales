@@ -21,13 +21,12 @@ import ServiciosView from './pages/ServiciosView';
 import CrearServicios from './pages/CrearServicios';
 import CategoriasView from './pages/CategoriasView';
 import CrearCategorias from './pages/CrearCategorias';
-
+import ServiciosCategorias from './pages/ServiciosCategorias';
 import ManzanasView from  './pages/ViewManzanas';
-
-
+import RegistroCategorias from  './pages/RegistroCategorias';
 import CrearManzanas from './pages/CrearManzanas';
 import HomeMujer from './pages/HomeMujer';
-
+import HomeMapView from './pages/HomeMap';
 import { AuthProvider } from './context/AuthProvider';
 import { CursosProvider } from './context/ServiciosProvider';
 
@@ -57,8 +56,9 @@ function App() {
             <Route path='/CrearCategorias' element={<CrearCategorias />} />
             <Route path="/Manzanas" element={<ManzanasView />} />
             <Route path='/CrearManzanas' element={<CrearManzanas />} />
-
-
+            <Route path='/HomeMap' element={<HomeMapView />} />
+            <Route path='/ServiciosCategorias' element={<ServiciosCategorias />} />
+            <Route path='/RegistroCategorias' element={<RegistroCategorias />} />
 
             <Route path="crear-cursos" element={<NuevoCurso />} />
             <Route path="editar/:id" element={<EditarCurso />} />

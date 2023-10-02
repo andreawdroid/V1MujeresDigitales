@@ -11,27 +11,32 @@ const Login = () => {
   const { SetAuth } = useAuth(); // Obtiene una función relacionada con la autenticación desde el hook useAuth.
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita la recarga de la página al enviar el formulario.
+    e.preventDefault();
 
-    // Comprueba si alguno de los campos (email o password) está vacío y muestra una alerta si es así.
-    if ([correo, password].includes('')) {
+    if ([correo, password].includes("")) {
       setAlerta({
-        msg: 'Todos los campos son obligatorios',
+        msg: "Todos los campos son obligatorios",
         error: true,
       });
-      return; // Sale de la función para evitar la ejecución posterior del código.
+      return;
     }
 
     try {
-      // Realiza una solicitud al servidor para iniciar sesión con los datos proporcionados.
-      const { data } = await clienteAxios.post('/usuarios/login', { correo, password });
-      setAlerta({}); // Borra cualquier mensaje de alerta existente.
-      localStorage.setItem('token', data.token); // Almacena un token de autenticación en el almacenamiento local.
-      SetAuth(data); // Realiza alguna acción relacionada con la autenticación (probablemente guarda el estado de autenticación).
+      const { data } = await clienteAxios.post("/auth/login", {
+        correo,
+        password,
+      });
+
+      setAlerta({});
+      localStorage.setItem("token", data.token);
+      setAuth(true); // Asumiendo que useAuth maneja el estado de autenticación.
+
+      // Redirige al usuario a la página de inicio o a donde desees.
+      // Puedes usar useHistory de react-router-dom para lograr esto.
+      // history.push("/inicio");
     } catch (error) {
-      // Captura y muestra un mensaje de error si la solicitud al servidor falla.
       setAlerta({
-        msg: error.response.data.msg,
+        msg: "Credenciales inválidas. Por favor, verifica tu correo y contraseña.",
         error: true,
       });
     }

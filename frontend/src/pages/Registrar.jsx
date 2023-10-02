@@ -266,7 +266,7 @@ const Registrar = () => {
           </Link>
         </nav>
       </div>
-      {/* Resto del código... */}
+     
     </>
   );
 };

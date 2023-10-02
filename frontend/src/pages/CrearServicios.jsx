@@ -25,8 +25,7 @@ const CrearServicios= () => {
                     <label
                       htmlFor="nombre"
                       className="uppercase text-gray-600 block text-xl font-bold text-center"
-                    >
-                      Nombre Municipio
+                    >Municipio
                     </label>
                     <input
                       id="nombre"
@@ -37,6 +36,27 @@ const CrearServicios= () => {
                       onChange={(e) => setNombre(e.target.value)}
                     />
                   </div>
+
+
+
+                  <div>
+                    <label
+                      htmlFor="nombre"
+                      className="uppercase text-gray-600 block text-xl font-bold text-center"
+                    >
+                      Descripción
+                    </label>
+                    <input
+                      id="nombre"
+                      type="text"
+                      placeholder="Ingresa nombre"
+                      className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
+                      value={nombre}
+                      onChange={(e) => setNombre(e.target.value)}
+                    />
+                  </div>
+
+
                 </div>
 
                 <button
