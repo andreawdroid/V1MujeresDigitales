@@ -40,7 +40,7 @@ const Registrar = () => {
     setAlerta({})
 
     try {
-      const { data } = await clienteAxios.post("/usuario/", {
+      const { data } = await clienteAxios.post("/usuario", {
         nombres,
         apellidos,
         documento,
@@ -228,12 +228,12 @@ const Registrar = () => {
               <label
                 htmlFor="password"
                 className="uppercase text-gray-600 block text-xl font-bold"
-                >
+              >
                 Contraseña
               </label>
               <input
                 name="password"
-                type="text"
+                type="password"
                 placeholder="Ingresa tu contrseña"
                 className="w-full shadow-md rounded-xl mt-3 p-3 border bg-gray-50"
                 value={password}
@@ -266,7 +266,6 @@ const Registrar = () => {
           </Link>
         </nav>
       </div>
-     
     </>
   );
 };

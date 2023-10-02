@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"; // Importa el componente Link de React Router para la navegación.
-import { useState } from "react"; // Importa el hook useState de React para gestionar el estado.
+import { useState, setAuth } from "react"; // Importa el hook useState de React para gestionar el estado.
 import Alerta from "../components/Alerta"; // Importa el componente Alerta desde una ubicación relativa.
 import clienteAxios from "../config/ClienteAxios"; // Importa una instancia de cliente Axios configurada previamente.
 import useAuth from "../hooks/useAuth"; // Importa el hook useAuth para gestionar la autenticación.
@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if ([correo, password].includes("")) {
       setAlerta({
         msg: "Todos los campos son obligatorios",
@@ -20,20 +20,21 @@ const Login = () => {
       });
       return;
     }
-
+  
     try {
-      const { data } = await clienteAxios.post("/auth/login", {
+      const { data } = await clienteAxios.post("/usuario/login", {
         correo,
         password,
       });
-
-      setAlerta({});
-      localStorage.setItem("token", data.token);
+  
+      setAlerta({
+        
+      });
+      // No se almacena el token en localStorage
       setAuth(true); // Asumiendo que useAuth maneja el estado de autenticación.
-
-      // Redirige al usuario a la página de inicio o a donde desees.
-      // Puedes usar useHistory de react-router-dom para lograr esto.
-      // history.push("/inicio");
+      
+      // Redirige al usuario a la página "homeMujeres"
+      history.push("/homeMujeres");
     } catch (error) {
       setAlerta({
         msg: "Credenciales inválidas. Por favor, verifica tu correo y contraseña.",
@@ -41,6 +42,7 @@ const Login = () => {
       });
     }
   };
+  
 
   const { msg } = alerta; // Extrae el mensaje de alerta del estado de alerta.
 
